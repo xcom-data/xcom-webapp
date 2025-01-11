@@ -8,8 +8,8 @@ import img from '@/assets/img/xcom_logo_black_2025.png';
 const navLinks = [
     { label: "SPONSOR", href: "/sponsor" },
     { label: "FAQ", href: "/faq" },
-    { label: "KOMITEÉN", href: "/board"},
-    { label: "LOGG INN", href: "/login"}
+    { label: "OM OSS", href: "/about"},
+    
 ]
 
 export default function Header() {
@@ -18,7 +18,7 @@ export default function Header() {
         <header className="flex py-4 my-4 text-lg w-full">
     <nav className="w-full">
         <div className="flex items-center w-full">
-            <Link href="/" className="w-1/5 text-center pl-4">
+            <Link href="/" className="w-1/3 text-center pl-4">
                 <Image 
                     src={img} 
                     alt="logo" 
