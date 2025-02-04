@@ -1,7 +1,7 @@
-export default function Container({ children }: {children: React.ReactNode;} ) {
+export default function Container({ children }: { children: React.ReactNode }) {
     return (
-        <div className="max-w-[1100px] mx-auto min-h-screen flex flex-col">
+        <div className='mx-auto flex min-h-screen max-w-[1200px] flex-col'>
             {children}
         </div>
-    );
-};
+    )
+}
