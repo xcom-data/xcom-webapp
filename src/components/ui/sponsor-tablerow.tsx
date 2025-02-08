@@ -1,8 +1,5 @@
 import React from 'react'
-import {
-    TableCell,
-    TableRow
-} from '@/components/ui/table'
+import { TableCell, TableRow } from '@/components/ui/table'
 
 import { Pencil, Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'

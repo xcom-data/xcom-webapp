@@ -1,12 +1,9 @@
-
 'use client'
 import { toast } from 'sonner'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
 import { Button } from '@/components/ui/button'
-import Link from 'next/link'
-import {MoveLeft} from 'lucide-react'
 import {
     Form,
     FormControl,
@@ -34,7 +31,7 @@ const formSchema = z.object({
     sponsorImage: z.string().min(0)
 })
 
-export default function MyForm() {
+export default function MyForm({ onSave }: { onSave: () => void }) {
     // const [files, setFiles] = useState<File[] | null>(null)
 
     // const dropZoneConfig = {
@@ -55,6 +52,7 @@ export default function MyForm() {
     function onSubmit(values: z.infer<typeof formSchema>) {
         try {
             console.log(values)
+            onSave()
             toast(
                 <pre className='mt-2 w-[340px] rounded-md bg-slate-950 p-4'>
                     <code className='text-white'>
@@ -69,30 +67,67 @@ export default function MyForm() {
     }
 
     return (
-        <section className=''>
-            
-        <Button className='my-auto'> <Link href='/admin/sponsor'> <MoveLeft /> </Link></Button>
+        <section>
+            <div className='mx-auto max-w-3xl space-y-8 py-10'>
+                <h1 className='my-auto text-4xl'> Legg til Sponsor </h1>
 
-        <div className='mx-auto max-w-3xl space-y-8 py-10'>
-        <h1 className='my-auto text-4xl'> Legg til Sponsor </h1>
-        
-        <Form {...form}>
-            <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className='space-y-8 '
-            >
-                <div className='grid grid-cols-full gap-4'>
-                    <div className='col-span-4'>
+                <Form {...form}>
+                    <form
+                        onSubmit={form.handleSubmit(onSubmit)}
+                        className='space-y-8'
+                    >
+                        <div className='grid-cols-full grid gap-4'>
+                            <div className='col-span-4'>
+                                <FormField
+                                    control={form.control}
+                                    name='sponsorName'
+                                    render={({ field }) => (
+                                        <FormItem>
+                                            <FormLabel>Sponsornavn</FormLabel>
+                                            <FormControl>
+                                                <Input
+                                                    placeholder='sponsornavn'
+                                                    type='text'
+                                                    {...field}
+                                                />
+                                            </FormControl>
+
+                                            <FormMessage />
+                                        </FormItem>
+                                    )}
+                                />
+                            </div>
+                        </div>
                         <FormField
                             control={form.control}
-                            name='sponsorName'
+                            name='isMainSponsor'
+                            render={({ field }) => (
+                                <FormItem className='flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4'>
+                                    <FormControl>
+                                        <Checkbox
+                                            checked={field.value}
+                                            onCheckedChange={field.onChange}
+                                        />
+                                    </FormControl>
+                                    <div className='space-y-1 leading-none'>
+                                        <FormLabel>Hovedsponsor?</FormLabel>
+
+                                        <FormMessage />
+                                    </div>
+                                </FormItem>
+                            )}
+                        />
+
+                        <FormField
+                            control={form.control}
+                            name='sponsorDescripton'
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Sponsornavn</FormLabel>
+                                    <FormLabel>Sponsorbeskrivelse</FormLabel>
                                     <FormControl>
-                                        <Input
-                                            placeholder='sponsornavn'
-                                            type='text'
+                                        <Textarea
+                                            placeholder='sponsorbeskrivelse'
+                                            className='resize-none'
                                             {...field}
                                         />
                                     </FormControl>
@@ -101,48 +136,8 @@ export default function MyForm() {
                                 </FormItem>
                             )}
                         />
-                    </div>
-                </div>
-                <FormField
-                    control={form.control}
-                    name='isMainSponsor'
-                    render={({ field }) => (
-                        <FormItem className='flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4'>
-                            <FormControl>
-                                <Checkbox
-                                    checked={field.value}
-                                    onCheckedChange={field.onChange}
-                                />
-                            </FormControl>
-                            <div className='space-y-1 leading-none'>
-                                <FormLabel>Hovedsponsor?</FormLabel>
 
-                                <FormMessage />
-                            </div>
-                        </FormItem>
-                    )}
-                />
-
-                <FormField
-                    control={form.control}
-                    name='sponsorDescripton'
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Sponsorbeskrivelse</FormLabel>
-                            <FormControl>
-                                <Textarea
-                                    placeholder='sponsorbeskrivelse'
-                                    className='resize-none'
-                                    {...field}
-                                />
-                            </FormControl>
-
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-
-                {/* <FormField
+                        {/* <FormField
               control={form.control}
               name="sponsorImage"
               render={({ field }) => (
@@ -187,10 +182,10 @@ export default function MyForm() {
                 </FormItem>
               )}
             /> */}
-                <Button type='submit'> Legg til Sponsor </Button>
-            </form>
-        </Form>
-        </div>
+                        <Button type='submit'> Legg til Sponsor </Button>
+                    </form>
+                </Form>
+            </div>
         </section>
     )
 }

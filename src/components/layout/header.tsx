@@ -18,7 +18,6 @@ export default function Header() {
             <nav className='w-full'>
                 <div className='flex w-full items-center text-black'>
                     <Link href='/' className='w-1/3 pl-4 text-center'>
-                    
                         <Image src={img} alt='logo' width={250} height={150} />
                     </Link>
                     {navLinks.map((link, index) => (

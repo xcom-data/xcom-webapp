@@ -3,6 +3,7 @@ import {
     SidebarProvider,
     SidebarTrigger
 } from '@/components/ui/sidebar'
+import { Toaster } from "@/components/ui/sonner"
 import { AppSidebar } from '@/components/layout/app-sidebar'
 import { cookies } from 'next/headers'
 
@@ -22,6 +23,7 @@ export default async function AdminLayout({
                 <main className='p-4'>
                     <SidebarTrigger />
                     {children}
+                    <Toaster />
                 </main>
             </SidebarInset>
         </SidebarProvider>
