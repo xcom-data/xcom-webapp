@@ -16,8 +16,9 @@ export default function Header() {
     return (
         <header className='my-4 flex w-full py-4 text-lg'>
             <nav className='w-full'>
-                <div className='flex w-full items-center'>
+                <div className='flex w-full items-center text-black'>
                     <Link href='/' className='w-1/3 pl-4 text-center'>
+                    
                         <Image src={img} alt='logo' width={250} height={150} />
                     </Link>
                     {navLinks.map((link, index) => (

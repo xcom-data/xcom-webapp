@@ -20,7 +20,7 @@ import {
 } from '@/components/ui/sidebar'
 import Link from 'next/link'
 import { ThemeToggle } from './theme-toggle'
-import SidebarMenuActiveButton from './sidebar-menu-active-button'
+import SidebarMenuActiveButton from '../ui/sidebar-menu-active-button'
 
 // Menu items.
 const items = [

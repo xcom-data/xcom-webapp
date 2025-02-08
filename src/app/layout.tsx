@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 import { Outfit } from 'next/font/google'
-import Providers from '@/components/ui/providers'
+import Providers from '@/components/layout/providers'
 
 export const metadata: Metadata = {
     title: 'Xcom data',
@@ -17,7 +17,7 @@ export default function RootLayout({
     children: React.ReactNode
 }>) {
     return (
-        <html lang='en' suppressHydrationWarning>
+        <html lang='en' suppressHydrationWarning className='light'>
             <body className={`${outfit.className} min-h-screen bg-zinc-100`}>
                 <Providers>{children}</Providers>
             </body>

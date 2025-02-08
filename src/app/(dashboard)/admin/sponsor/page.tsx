@@ -16,14 +16,13 @@ export default function DashboardSponsor() {
             <h1 className='text-2xl font-semibold'>Sponsorer</h1>
             <Table className='w-full'>
                 <TableCaption>
-                    {' '}
-                    <Button>
-                        {' '}
-                        <Link href='/admin/sponsor/createsponsor'>
-                            {' '}
-                            Add Sponsor{' '}
-                        </Link>{' '}
-                    </Button>{' '}
+                    
+                    
+
+
+
+
+
                 </TableCaption>
                 <TableHeader>
                     <TableRow>
