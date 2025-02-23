@@ -8,12 +8,12 @@ import {
 export default function FAQ() {
     const FAQs = [
         {
-            question: 'Spørsmål 1',
-            answer: 'Svar 1'
+            question: 'Hvor skal vi på ekskursjon?',
+            answer: 'Den faglige delen går til Bologna og Padova, mens den sosiale vil være i Hellas'
         },
         {
-            question: 'Spørsmål 2',
-            answer: 'Svar 2'
+            question: 'Hva skal vi gjøre på ekskursjon?',
+            answer: 'Ha det hyggelig og gøy, og få faglig påfyll:)'
         }
     ]
 
