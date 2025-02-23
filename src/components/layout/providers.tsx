@@ -1,6 +1,7 @@
 'use client'
 
 import { ThemeProvider } from 'next-themes'
+import ReactQueryProvider from '@/utils/providers/ReactQueryProvider'
 
 export default function Providers({ children }: { children: React.ReactNode }) {
     return (
@@ -10,7 +11,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
             disableTransitionOnChange
             enableSystem
         >
-            {children}
+            <ReactQueryProvider>{children}</ReactQueryProvider>
         </ThemeProvider>
     )
 }

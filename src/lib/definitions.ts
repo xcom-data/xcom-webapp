@@ -3,7 +3,7 @@ export type Sponsor = {
     name: string
     isMainSponsor: boolean
     description: string
-    image: string
+    // image: string
 }
 
 export type QnA = {

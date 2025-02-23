@@ -3,28 +3,21 @@ import { TableCell, TableRow } from '@/components/ui/table'
 
 import { Pencil, Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { Sponsor } from '@/lib/definitions'
 
-export default function SponsorTableRow({
-    sponsorname
-}: {
-    sponsorname: string
-}) {
+export default function SponsorTableRow({ sponsor }: { sponsor: Sponsor }) {
     return (
         <TableRow>
-            <TableCell className='font-medium'> {sponsorname} </TableCell>
+            <TableCell className='font-medium'> {sponsor.name} </TableCell>
             <TableCell className='text-right'>
-                {' '}
                 <Button size='icon' className='bg-green-600 hover:bg-green-800'>
-                    {' '}
-                    <Pencil />{' '}
-                </Button>{' '}
+                    <Pencil />
+                </Button>
             </TableCell>
             <TableCell className='text-right'>
-                {' '}
                 <Button size='icon' variant='destructive'>
-                    {' '}
-                    <Trash2 />{' '}
-                </Button>{' '}
+                    <Trash2 />
+                </Button>
             </TableCell>
         </TableRow>
     )

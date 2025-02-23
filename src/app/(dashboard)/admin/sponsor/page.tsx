@@ -1,3 +1,5 @@
+'use client'
+
 import {
     Table,
     TableBody,
@@ -7,29 +9,63 @@ import {
     TableRow
 } from '@/components/ui/table'
 import SponsorTableRow from '@/components/ui/sponsor-tablerow'
-
 import SponsorFormDialog from '@/components/forms/form-sponsor-dialog'
+import { LoaderCircle } from 'lucide-react'
+import { useQuery } from '@tanstack/react-query'
+import { supabase } from '@/lib/initSupabase'
+import { Sponsor } from '@/lib/definitions'
+
+const fetchSponsors = async () => {
+    const { data } = await supabase
+        .from('Sponsors')
+        .select('*')
+        .order('name', { ascending: true })
+    return data ?? []
+}
+
+function SponsorTable() {
+    const { data: sponsors, isLoading } = useQuery({
+        queryKey: ['sponsors'],
+        queryFn: fetchSponsors
+    })
+
+    return (
+        <div>
+            {isLoading ? (
+                <LoaderCircle />
+            ) : (
+                <Table className='w-full'>
+                    <TableCaption>
+                        <SponsorFormDialog />
+                    </TableCaption>
+                    <TableHeader>
+                        <TableRow>
+                            <TableHead className='w-[100px]'>Navn</TableHead>
+                            <TableHead className='mx-1 max-w-10 text-right'></TableHead>
+                            <TableHead className='w-8 text-right'></TableHead>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                        {sponsors &&
+                            sponsors.map((sponsor: Sponsor, index: number) => (
+                                <SponsorTableRow
+                                    key={index}
+                                    sponsor={sponsor}
+                                />
+                            ))}
+                    </TableBody>
+                </Table>
+            )}
+        </div>
+    )
+}
 
 export default function DashboardSponsor() {
     return (
         <section className='mx-auto max-w-3xl space-y-8 py-10'>
             <h1 className='text-2xl font-semibold'>Sponsorer</h1>
-            <Table className='w-full'>
-                <TableCaption>
-                    <SponsorFormDialog />
-                </TableCaption>
-                <TableHeader>
-                    <TableRow>
-                        <TableHead className='w-[100px]'>Navn</TableHead>
-                        <TableHead className='mx-1 max-w-10 text-right'></TableHead>
-                        <TableHead className='w-8 text-right'></TableHead>
-                    </TableRow>
-                </TableHeader>
-                <TableBody>
-                    <SponsorTableRow sponsorname='Sponsor 1' />
-                    <SponsorTableRow sponsorname='Sponsor 2' />
-                </TableBody>
-            </Table>
+
+            <SponsorTable />
         </section>
     )
 }
