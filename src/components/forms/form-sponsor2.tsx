@@ -15,6 +15,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Textarea } from '@/components/ui/textarea'
+import { createSponsor } from '@/actions/createSponsor'
 
 // import { CloudUpload, Paperclip } from 'lucide-react'
 // import {
@@ -27,8 +28,8 @@ import { Textarea } from '@/components/ui/textarea'
 const formSchema = z.object({
     sponsorName: z.string().min(2),
     isMainSponsor: z.boolean(),
-    sponsorDescripton: z.string().min(10),
-    sponsorImage: z.string().min(0)
+    sponsorDescripton: z.string().min(10)
+    // sponsorImage: z.string().min(0)
 })
 
 export default function MyForm({ onSave }: { onSave: () => void }) {
@@ -44,8 +45,8 @@ export default function MyForm({ onSave }: { onSave: () => void }) {
         defaultValues: {
             sponsorName: '',
             isMainSponsor: false,
-            sponsorDescripton: '',
-            sponsorImage: ''
+            sponsorDescripton: ''
+            // sponsorImage: ''
         }
     })
 
@@ -53,13 +54,11 @@ export default function MyForm({ onSave }: { onSave: () => void }) {
         try {
             console.log(values)
             onSave()
-            toast(
-                <pre className='mt-2 w-[340px] rounded-md bg-slate-950 p-4'>
-                    <code className='text-white'>
-                        {JSON.stringify(values, null, 2)}
-                    </code>
-                </pre>
-            )
+            const formData = new FormData()
+            formData.append('name', values.sponsorName)
+            formData.append('isMainSponsor', values.isMainSponsor.toString())
+            formData.append('description', values.sponsorDescripton)
+            createSponsor(formData)
         } catch (error) {
             console.error('Form submission error', error)
             toast.error('Failed to submit the form. Please try again.')

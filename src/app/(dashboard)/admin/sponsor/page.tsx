@@ -24,10 +24,29 @@ const fetchSponsors = async () => {
 }
 
 function SponsorTable() {
-    const { data: sponsors, isLoading } = useQuery({
+    const {
+        data: sponsors,
+        isLoading,
+        refetch
+    } = useQuery({
         queryKey: ['sponsors'],
         queryFn: fetchSponsors
     })
+
+    const supabaseListener = supabase
+        .channel('table-db-changes')
+        .on(
+            'postgres_changes',
+            {
+                event: '*',
+                schema: 'public',
+                table: 'Sponsors'
+            },
+            () => {
+                refetch()
+            }
+        )
+        .subscribe()
 
     return (
         <div>
@@ -47,9 +66,9 @@ function SponsorTable() {
                     </TableHeader>
                     <TableBody>
                         {sponsors &&
-                            sponsors.map((sponsor: Sponsor, index: number) => (
+                            sponsors.map((sponsor: Sponsor) => (
                                 <SponsorTableRow
-                                    key={index}
+                                    key={sponsor.id}
                                     sponsor={sponsor}
                                 />
                             ))}

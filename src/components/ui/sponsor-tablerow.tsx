@@ -1,5 +1,6 @@
 import React from 'react'
 import { TableCell, TableRow } from '@/components/ui/table'
+import { deleteSponsor } from '@/actions/deleteSponsor'
 
 import { Pencil, Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -15,7 +16,11 @@ export default function SponsorTableRow({ sponsor }: { sponsor: Sponsor }) {
                 </Button>
             </TableCell>
             <TableCell className='text-right'>
-                <Button size='icon' variant='destructive'>
+                <Button
+                    size='icon'
+                    variant='destructive'
+                    onClick={async () => await deleteSponsor(sponsor.id)}
+                >
                     <Trash2 />
                 </Button>
             </TableCell>
