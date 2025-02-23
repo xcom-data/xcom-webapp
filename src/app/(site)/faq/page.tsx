@@ -8,18 +8,18 @@ import {
 export default function FAQ() {
     const FAQs = [
         {
-            question: 'Spørsmål 1',
-            answer: 'Svar 1'
+            question: 'Hvor skal vi på ekskursjon?',
+            answer: 'Den faglige delen går til Bologna og Padova, mens den sosiale vil være i Hellas'
         },
         {
-            question: 'Spørsmål 2',
-            answer: 'Svar 2'
+            question: 'Hva skal vi gjøre på ekskursjon?',
+            answer: 'Ha det hyggelig og gøy, og få faglig påfyll:)'
         }
     ]
 
     return (
         <main>
-            <h1 className='mb-4 text-4xl font-bold'> Ofte Stilte Spørsmål </h1>
+            <h1 className='my-4 text-4xl font-bold'> Ofte Stilte Spørsmål </h1>
             <hr className='my-4 border-t border-gray-300' />
             <Accordion type='single' collapsible>
                 {FAQs.map((FAQ, index) => (

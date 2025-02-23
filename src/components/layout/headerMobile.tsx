@@ -11,7 +11,7 @@ import Image from 'next/image'
 import menu_img from '@/assets/img/menu.jpg'
 
 const links = [
-    //   { name: 'Program', url: '/program' },
+    { name: 'Program', url: '/program' },
     { name: 'Sponsor', url: '/sponsor' },
     { name: 'FAQ', url: '/faq' },
     { name: 'About', url: '/about' }
@@ -19,7 +19,7 @@ const links = [
 
 export default function HeaderMobile() {
     return (
-        <div className='lg:hidden '>
+        <div className='lg:hidden'>
             <Sheet>
                 <SheetTrigger asChild>
                     <div className='mr-4 rounded-md p-2 opacity-70'>
