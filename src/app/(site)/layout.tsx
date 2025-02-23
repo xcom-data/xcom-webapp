@@ -1,7 +1,7 @@
 import React from 'react'
 import Container from '@/components/layout/container'
 import Footer from '@/components/layout/footer'
-import Header from '@/components/layout/header'
+import NavBar from '@/components/layout/navBar'
 
 export default function Sitelayout({
     children
@@ -10,7 +10,7 @@ export default function Sitelayout({
 }>) {
     return (
         <Container>
-            <Header />
+            <NavBar />
             <section className='mx-4'>{children}</section>
             <Footer />
         </Container>
