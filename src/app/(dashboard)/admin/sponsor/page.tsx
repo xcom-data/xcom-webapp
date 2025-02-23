@@ -21,9 +21,7 @@ export default function DashboardSponsor() {
                 <TableHeader>
                     <TableRow>
                         <TableHead className='w-[100px]'>Navn</TableHead>
-                        <TableHead className='mx-1 max-w-10 text-right'>
-                            
-                        </TableHead>
+                        <TableHead className='mx-1 max-w-10 text-right'></TableHead>
                         <TableHead className='w-8 text-right'></TableHead>
                     </TableRow>
                 </TableHeader>
