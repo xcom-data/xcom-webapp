@@ -19,3 +19,18 @@ export type BoardMember = {
     mail: string
     image: string
 }
+
+export type programEvent = {
+    id: string
+    name: string
+    time: string
+    place: string
+    description:string
+}
+
+
+export type programDay = {
+    id: string
+    date: string
+    programevents: programEvent[]
+}
