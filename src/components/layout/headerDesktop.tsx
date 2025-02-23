@@ -1,9 +1,8 @@
+
 'use client'
 
-import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import img from '@/assets/img/xcom_logo_black_2025.png'
 
 const navLinks = [
     {label: 'PROGRAM', href: '/program'},
@@ -12,15 +11,11 @@ const navLinks = [
     { label: 'OM OSS', href: '/about' }
 ]
 
-export default function Header() {
+export default function HeaderDesktop() {
     const pathname = usePathname()
     return (
-        <header className='my-4 flex w-full py-4 text-lg'>
-            <nav className='w-full'>
-                <div className='flex w-full items-center text-black'>
-                    <Link href='/' className='w-1/3 pl-4 text-center'>
-                        <Image src={img} alt='logo' width={250} height={150} />
-                    </Link>
+        <header className='hidden lg:block my-4 w-full py-4 text-lg'>
+                <div className='flex w-full justify-end items-center text-black'>
                     {navLinks.map((link, index) => (
                         <Link
                             key={index}
@@ -33,7 +28,6 @@ export default function Header() {
                         </Link>
                     ))}
                 </div>
-            </nav>
         </header>
     )
 }
