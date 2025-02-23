@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import img from '@/assets/img/xcom_logo_black_2025.png'
 
 const navLinks = [
+    {label: 'PROGRAM', href: '/program'},
     { label: 'SPONSOR', href: '/sponsor' },
     { label: 'FAQ', href: '/faq' },
     { label: 'OM OSS', href: '/about' }
