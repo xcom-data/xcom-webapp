@@ -11,7 +11,6 @@ export default function Home() {
                 className='-z-10'
             ></Image>
             <div className='m-auto w-3/5 text-center'>
-                <p className='font text-4xl text-black'> PROGRAM KOMMER... </p>
             </div>
         </main>
     )
