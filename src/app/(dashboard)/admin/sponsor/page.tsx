@@ -8,7 +8,7 @@ import {
     TableHeader,
     TableRow
 } from '@/components/ui/table'
-import SponsorTableRow from '@/components/ui/sponsor-tablerow'
+import CustomTableRow from '@/components/ui/custom-tablerow'
 import SponsorFormDialog from '@/components/forms/form-sponsor-dialog'
 import { LoaderCircle } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
@@ -67,9 +67,10 @@ function SponsorTable() {
                     <TableBody>
                         {sponsors &&
                             sponsors.map((sponsor: Sponsor) => (
-                                <SponsorTableRow
+                                <CustomTableRow
                                     key={sponsor.id}
-                                    sponsor={sponsor}
+                                    name={sponsor.name}
+                                    id={sponsor.id}
                                 />
                             ))}
                     </TableBody>

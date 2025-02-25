@@ -2,11 +2,12 @@
 
 import { createClient } from '@/utils/supabase/server'
 
-export async function deleteSponsor(id: string) {
+export async function deleteFAQ(id: string) {
     const supabase = await createClient()
+  
 
     const { data, error } = await supabase
-        .from('Sponsors')
+        .from('FAQ')
         .delete()
         .eq('id', id)
 

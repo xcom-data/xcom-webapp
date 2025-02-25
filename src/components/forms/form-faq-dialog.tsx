@@ -6,11 +6,11 @@ import {
     DialogTitle,
     DialogTrigger
 } from '@/components/ui/dialog'
-import FormSponsor from '@/components/forms/form-sponsor'
+import FormFAQ from '@/components/forms/form-faq'
 import { Button } from '@/components/ui/button'
 import { useState } from 'react'
 
-export default function SponsorFormDialog() {
+export default function FAQFormDialog() {
     const [open, setOpen] = useState(false)
 
     const handleCloseDialog = () => {
@@ -20,13 +20,13 @@ export default function SponsorFormDialog() {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button> Legg til Sponsor </Button>
+                <Button> Legg til Spørsmål </Button>
             </DialogTrigger>
             <DialogContent className='max-w-4xl'>
                 <DialogHeader>
                     <DialogTitle></DialogTitle>
                 </DialogHeader>
-                <FormSponsor onSave={handleCloseDialog} />
+                <FormFAQ onSave={handleCloseDialog} />
             </DialogContent>
         </Dialog>
     )

@@ -6,7 +6,7 @@ export type Sponsor = {
     // image: string
 }
 
-export type QnA = {
+export type FAQ = {
     id: string
     question: string
     answer: string
