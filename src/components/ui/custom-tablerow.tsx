@@ -6,7 +6,13 @@ import { Pencil, Trash2 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Sponsor } from '@/lib/definitions'
 
-export default function CustomTableRow({ title, id }: { title: string, id: string }) {
+export default function CustomTableRow({
+    title,
+    id
+}: {
+    title: string
+    id: string
+}) {
     return (
         <TableRow>
             <TableCell className='font-medium'> {title} </TableCell>

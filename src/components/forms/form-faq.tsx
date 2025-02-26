@@ -16,15 +16,12 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { createFAQ } from '@/actions/createFAQ'
 
-
-
 const formSchema = z.object({
     question: z.string().min(2),
     answer: z.string().min(10)
 })
 
 export default function MyForm({ onSave }: { onSave: () => void }) {
-    
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -78,7 +75,6 @@ export default function MyForm({ onSave }: { onSave: () => void }) {
                                 />
                             </div>
                         </div>
-                        
 
                         <FormField
                             control={form.control}

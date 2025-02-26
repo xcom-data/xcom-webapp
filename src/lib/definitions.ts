@@ -25,9 +25,8 @@ export type programEvent = {
     name: string
     time: string
     place: string
-    description:string
+    description: string
 }
-
 
 export type programDay = {
     id: string
