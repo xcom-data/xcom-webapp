@@ -6,11 +6,11 @@ import {
     DialogTitle,
     DialogTrigger
 } from '@/components/ui/dialog'
-import FormFAQ from '@/components/forms/faq-form'
+import ProgramForm from './program-form'
 import { Button } from '@/components/ui/button'
 import { useState } from 'react'
 
-export default function FAQFormDialog() {
+export default function ProgramFormDialog() {
     const [open, setOpen] = useState(false)
 
     const handleCloseDialog = () => {
@@ -20,13 +20,13 @@ export default function FAQFormDialog() {
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                <Button> Legg til Spørsmål </Button>
+                <Button> Legg til Program </Button>
             </DialogTrigger>
             <DialogContent className='max-w-4xl'>
                 <DialogHeader>
                     <DialogTitle></DialogTitle>
                 </DialogHeader>
-                <FormFAQ onSave={handleCloseDialog} />
+                <ProgramForm onSave={handleCloseDialog} />
             </DialogContent>
         </Dialog>
     )
