@@ -20,16 +20,12 @@ export type BoardMember = {
     image: string
 }
 
-export type programEvent = {
+export type ProgramEvent = {
     id: string
     name: string
-    time: string
+    startTime: string
+    endTime: string
     place: string
     description: string
-}
-
-export type programDay = {
-    id: string
     date: string
-    programevents: programEvent[]
 }
