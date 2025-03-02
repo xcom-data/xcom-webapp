@@ -21,7 +21,7 @@ const formSchema = z.object({
     answer: z.string().min(10)
 })
 
-export default function MyForm({ onSave }: { onSave: () => void }) {
+export default function FAQForm({ onSave }: { onSave: () => void }) {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -32,12 +32,12 @@ export default function MyForm({ onSave }: { onSave: () => void }) {
 
     function onSubmit(values: z.infer<typeof formSchema>) {
         try {
-            console.log(values)
             onSave()
             const formData = new FormData()
             formData.append('question', values.question)
             formData.append('answer', values.answer)
             createFAQ(formData)
+            toast('Spørsmålet er lagt til')
         } catch (error) {
             console.error('Form submission error', error)
             toast.error('Failed to submit the form. Please try again.')
@@ -84,7 +84,7 @@ export default function MyForm({ onSave }: { onSave: () => void }) {
                                     <FormLabel>Svar</FormLabel>
                                     <FormControl>
                                         <Textarea
-                                            placeholder='answer'
+                                            placeholder='Svar'
                                             className='resize-none'
                                             {...field}
                                         />

@@ -9,11 +9,12 @@ import {
     TableRow
 } from '@/components/ui/table'
 import CustomTableRow from '@/components/ui/custom-tablerow'
-import FAQFormDialog from '@/components/forms/form-faq-dialog'
+import FAQFormDialog from '@/components/forms/faq-form-dialog'
 import { LoaderCircle } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 import { supabase } from '@/lib/initSupabase'
 import { FAQ } from '@/lib/definitions'
+import { deleteFAQ } from '@/actions/deleteFAQ'
 
 const fetchFAQs = async () => {
     const { data } = await supabase
@@ -59,6 +60,7 @@ function FAQTable() {
                     </TableCaption>
                     <TableHeader>
                         <TableRow>
+                            <TableHead className='w-[400px]'>FAQs</TableHead>
                             <TableHead className='mx-1 max-w-10 text-right'></TableHead>
                             <TableHead className='w-8 text-right'></TableHead>
                         </TableRow>
@@ -70,6 +72,7 @@ function FAQTable() {
                                     key={faq.id}
                                     title={faq.question}
                                     id={faq.id}
+                                    handleDelete={deleteFAQ}
                                 />
                             ))}
                     </TableBody>

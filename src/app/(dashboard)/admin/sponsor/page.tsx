@@ -9,11 +9,12 @@ import {
     TableRow
 } from '@/components/ui/table'
 import CustomTableRow from '@/components/ui/custom-tablerow'
-import SponsorFormDialog from '@/components/forms/form-sponsor-dialog'
+import SponsorFormDialog from '@/components/forms/sponsor-form-dialog'
 import { LoaderCircle } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'
 import { supabase } from '@/lib/initSupabase'
 import { Sponsor } from '@/lib/definitions'
+import { deleteSponsor } from '@/actions/deleteSponsor'
 
 const fetchSponsors = async () => {
     const { data } = await supabase
@@ -33,7 +34,7 @@ function SponsorTable() {
         queryFn: fetchSponsors
     })
 
-    const supabaseListener = supabase
+    supabase
         .channel('table-db-changes')
         .on(
             'postgres_changes',
@@ -59,7 +60,9 @@ function SponsorTable() {
                     </TableCaption>
                     <TableHeader>
                         <TableRow>
-                            <TableHead className='w-[100px]'>Navn</TableHead>
+                            <TableHead className='w-[100px]'>
+                                Sponsorer
+                            </TableHead>
                             <TableHead className='mx-1 max-w-10 text-right'></TableHead>
                             <TableHead className='w-8 text-right'></TableHead>
                         </TableRow>
@@ -69,8 +72,9 @@ function SponsorTable() {
                             sponsors.map((sponsor: Sponsor) => (
                                 <CustomTableRow
                                     key={sponsor.id}
-                                    name={sponsor.name}
+                                    title={sponsor.name}
                                     id={sponsor.id}
+                                    handleDelete={deleteSponsor}
                                 />
                             ))}
                     </TableBody>

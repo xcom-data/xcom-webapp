@@ -22,7 +22,7 @@ export default function ProgramFormDialog() {
             <DialogTrigger asChild>
                 <Button> Legg til Program </Button>
             </DialogTrigger>
-            <DialogContent className='max-w-4xl'>
+            <DialogContent className='max-h-[90vh] max-w-4xl overflow-y-scroll'>
                 <DialogHeader>
                     <DialogTitle></DialogTitle>
                 </DialogHeader>

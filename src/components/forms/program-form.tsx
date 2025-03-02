@@ -1,5 +1,4 @@
 'use client'
-import { useState } from 'react'
 import { toast } from 'sonner'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -21,38 +20,46 @@ import {
     PopoverContent,
     PopoverTrigger
 } from '@/components/ui/popover'
+import { Textarea } from '@/components/ui/textarea'
 import { Calendar } from '@/components/ui/calendar'
 import { Calendar as CalendarIcon } from 'lucide-react'
 import { TimePicker } from '../ui/time-picker'
+import { createEvent } from '@/actions/createEvent'
 
 const formSchema = z.object({
-    name: z.string().min(1),
-    place: z.string().min(1),
-    description: z.string().min(1),
-    date: z.coerce.date()
+    eventName: z.string().min(1, 'Navn er påkrevd'),
+    place: z.string().min(1, 'Sted er påkrevd'),
+    description: z.string().min(1, 'Beskrivelse er påkrevd'),
+    date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Ugyldig dato (YYYY-MM-DD)'),
+    startTime: z.string().regex(/^\d{2}:\d{2}$/, 'Ugyldig tid (hh:mm)'),
+    endTime: z.string().regex(/^\d{2}:\d{2}$/, 'Ugyldig tid (hh:mm)')
 })
 
-export default function MyForm() {
+export default function ProgramForm({ onSave }: { onSave: () => void }) {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            date: new Date()
+            eventName: '',
+            place: '',
+            description: '',
+            date: format(new Date(), 'yyyy-MM-dd'),
+            startTime: '00:00',
+            endTime: '00:00'
         }
     })
 
-    const { startTime, setStartTime } = useState()
-    const { endTime, setEndTime } = useState()
-
     function onSubmit(values: z.infer<typeof formSchema>) {
         try {
-            console.log(values)
-            toast(
-                <pre className='mt-2 w-[340px] rounded-md bg-slate-950 p-4'>
-                    <code className='text-white'>
-                        {JSON.stringify(values, null, 2)}
-                    </code>
-                </pre>
-            )
+            onSave()
+            const formData = new FormData()
+            formData.append('name', values.eventName)
+            formData.append('place', values.place)
+            formData.append('description', values.description)
+            formData.append('startTime', values.startTime)
+            formData.append('endTime', values.endTime)
+            formData.append('date', values.date.toString())
+            createEvent(formData)
+            toast('Ny Aktivitet lagt til')
         } catch (error) {
             console.error('Form submission error', error)
             toast.error('Failed to submit the form. Please try again.')
@@ -60,138 +67,168 @@ export default function MyForm() {
     }
 
     return (
-        <Form {...form}>
-            <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className='mx-auto max-w-3xl space-y-8 py-10'
-            >
-                <FormField
-                    control={form.control}
-                    name='name'
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Navn på aktivitet</FormLabel>
-                            <FormControl>
-                                <Input placeholder='' type='text' {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-
-                <FormField
-                    control={form.control}
-                    name='place'
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Sted</FormLabel>
-                            <FormControl>
-                                <Input placeholder='' type='' {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-
-                <FormField
-                    control={form.control}
-                    name='description'
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Beskrivelse</FormLabel>
-                            <FormControl>
-                                <Input placeholder='' type='' {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-
-                <FormField
-                    control={form.control}
-                    name='place'
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Start tidspunkt</FormLabel>
-                            <FormControl>
-                                <TimePicker
-                                    date={startTime}
-                                    setDate={setStartTime}
-                                ></TimePicker>
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-
-                <FormField
-                    control={form.control}
-                    name='place'
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Slutt tidspunkt</FormLabel>
-                            <FormControl>
-                                <TimePicker
-                                    date={undefined}
-                                    setDate={function (
-                                        date: Date | undefined
-                                    ): void {
-                                        throw new Error(
-                                            'Function not implemented.'
-                                        )
-                                    }}
-                                ></TimePicker>
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-
-                <FormField
-                    control={form.control}
-                    name='date'
-                    render={({ field }) => (
-                        <FormItem className='flex flex-col'>
-                            <FormLabel>Dato</FormLabel>
-                            <Popover>
-                                <PopoverTrigger asChild>
+        <section>
+            <div className='mx-auto max-w-3xl py-10'>
+                <h1 className='my-auto text-4xl'> Legg til Program </h1>
+                <Form {...form}>
+                    <form
+                        onSubmit={form.handleSubmit(onSubmit)}
+                        className='mx-auto max-w-3xl space-y-4 py-10'
+                    >
+                        <FormField
+                            control={form.control}
+                            name='eventName'
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Navn på aktivitet</FormLabel>
                                     <FormControl>
-                                        <Button
-                                            variant={'outline'}
-                                            className={cn(
-                                                'w-[240px] pl-3 text-left font-normal',
-                                                !field.value &&
-                                                    'text-muted-foreground'
-                                            )}
-                                        >
-                                            {field.value ? (
-                                                format(field.value, 'PPP')
-                                            ) : (
-                                                <span>Pick a date</span>
-                                            )}
-                                            <CalendarIcon className='ml-auto h-4 w-4 opacity-50' />
-                                        </Button>
+                                        <Input
+                                            placeholder=''
+                                            type='text'
+                                            {...field}
+                                        />
                                     </FormControl>
-                                </PopoverTrigger>
-                                <PopoverContent
-                                    className='w-auto p-0'
-                                    align='start'
-                                >
-                                    <Calendar
-                                        mode='single'
-                                        selected={field.value}
-                                        onSelect={field.onChange}
-                                        initialFocus
-                                    />
-                                </PopoverContent>
-                            </Popover>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
 
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <Button type='submit'>Legg til</Button>
-            </form>
-        </Form>
+                        <FormField
+                            control={form.control}
+                            name='place'
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Sted</FormLabel>
+                                    <FormControl>
+                                        <Input
+                                            placeholder=''
+                                            type=''
+                                            {...field}
+                                        />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+
+                        <FormField
+                            control={form.control}
+                            name='description'
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Beskrivelse</FormLabel>
+                                    <FormControl>
+                                        <Textarea
+                                            placeholder=''
+                                            className='h-28 resize-none'
+                                            {...field}
+                                        />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <div className='mx-auto flex w-full flex-col justify-between space-y-2 pb-4 md:flex-row'>
+                            <FormField
+                                control={form.control}
+                                name='startTime'
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel> Start </FormLabel>
+                                        <FormControl>
+                                            <TimePicker
+                                                time={field.value}
+                                                setTime={field.onChange}
+                                            ></TimePicker>
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+
+                            <FormField
+                                control={form.control}
+                                name='endTime'
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Slutt</FormLabel>
+                                        <FormControl>
+                                            <TimePicker
+                                                time={field.value}
+                                                setTime={field.onChange}
+                                            ></TimePicker>
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+
+                            <FormField
+                                control={form.control}
+                                name='date'
+                                render={({ field }) => (
+                                    <FormItem className='flex flex-col space-y-4 pt-1'>
+                                        <FormLabel>Dato</FormLabel>
+                                        <Popover>
+                                            <PopoverTrigger asChild>
+                                                <FormControl>
+                                                    <Button
+                                                        variant={'outline'}
+                                                        className={cn(
+                                                            'w-[240px] pl-3 text-left font-normal',
+                                                            !field.value &&
+                                                                'text-muted-foreground'
+                                                        )}
+                                                    >
+                                                        {field.value ? (
+                                                            format(
+                                                                field.value,
+                                                                'PPP'
+                                                            )
+                                                        ) : (
+                                                            <span>Dato: </span>
+                                                        )}
+                                                        <CalendarIcon className='ml-auto h-4 w-4 opacity-50' />
+                                                    </Button>
+                                                </FormControl>
+                                            </PopoverTrigger>
+                                            <PopoverContent
+                                                className='w-auto p-0'
+                                                align='start'
+                                            >
+                                                <Calendar
+                                                    mode='single'
+                                                    selected={
+                                                        field.value
+                                                            ? new Date(
+                                                                  field.value
+                                                              )
+                                                            : undefined
+                                                    }
+                                                    onSelect={date =>
+                                                        field.onChange(
+                                                            date
+                                                                ? format(
+                                                                      date,
+                                                                      'yyyy-MM-dd'
+                                                                  )
+                                                                : ''
+                                                        )
+                                                    }
+                                                    initialFocus
+                                                />
+                                            </PopoverContent>
+                                        </Popover>
+
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
+                        <Button type='submit'>Legg til</Button>
+                    </form>
+                </Form>
+            </div>
+        </section>
     )
 }

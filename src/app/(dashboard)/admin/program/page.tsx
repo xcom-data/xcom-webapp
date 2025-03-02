@@ -15,7 +15,7 @@ const fetchProgram = async () => {
 }
 
 export default function DashboardProgram() {
-    const { data: programEvents } = useQuery({
+    const { data: programEvents, refetch } = useQuery({
         queryKey: ['programEvents'],
         queryFn: fetchProgram
     })
@@ -30,13 +30,29 @@ export default function DashboardProgram() {
         return dates
     }
 
+    supabase
+        .channel('table-db-changes')
+        .on(
+            'postgres_changes',
+            {
+                event: '*',
+                schema: 'public',
+                table: 'Program-event'
+            },
+            () => {
+                refetch()
+            }
+        )
+        .subscribe()
+
     return (
-        <main>
-            <h1 className='mb-4 text-4xl font-bold'>Program</h1>
-            <h4 className='mb-8'>
-                Under finner du programmet for ekskursjonen 2025, merk at det
-                kan forekomme endringer underveis.
-            </h4>
+        <section className='mx-auto max-w-3xl space-y-8 py-10'>
+            <div className='flex flex-row justify-between'>
+                <h1 className='mb-4 text-left text-2xl font-semibold'>
+                    Program
+                </h1>
+                <ProgramFormDialog />
+            </div>
             <div>
                 {findProgramDates().map((date: string) => {
                     const dateObj = new Date(date)
@@ -78,7 +94,6 @@ export default function DashboardProgram() {
                     )
                 })}
             </div>
-            <ProgramFormDialog />
-        </main>
+        </section>
     )
 }

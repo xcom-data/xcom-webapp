@@ -6,7 +6,7 @@ import {
     DialogTitle,
     DialogTrigger
 } from '@/components/ui/dialog'
-import FormSponsor from '@/components/forms/form-sponsor'
+import FormSponsor from '@/components/forms/sponsor-form'
 import { Button } from '@/components/ui/button'
 import { useState } from 'react'
 
