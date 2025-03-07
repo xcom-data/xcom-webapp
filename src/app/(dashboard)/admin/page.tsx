@@ -12,7 +12,7 @@ export default async function AdminPage() {
 
     return (
         <main className='flex w-full justify-between'>
-            <h1 className='mb-4 text-3xl font-bold'>Hello {data.user.email}</h1>
+            <h1 className='mb-4 text-3xl font-bold'>Hei {data.user.email}!</h1>
             <LogoutButton />
         </main>
     )

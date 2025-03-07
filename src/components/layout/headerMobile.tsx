@@ -1,5 +1,6 @@
 import {
     Sheet,
+    SheetClose,
     SheetContent,
     SheetHeader,
     SheetTitle,
@@ -39,6 +40,8 @@ export default function HeaderMobile() {
                     </SheetHeader>
                     <ul className='mt-8'>
                         {links.map(link => (
+                            // eslint-disable-next-line react/jsx-key
+                            <SheetClose asChild>
                             <li
                                 key={link.url}
                                 className='flex h-[60px] items-center border-b text-left text-xl first:border-t'
@@ -47,6 +50,7 @@ export default function HeaderMobile() {
                                     {link.name}
                                 </Link>
                             </li>
+                            </SheetClose>
                         ))}
                     </ul>
                 </SheetContent>

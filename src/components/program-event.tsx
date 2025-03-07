@@ -32,7 +32,7 @@ export default function ProgramEventObject({
             <CardHeader>
                 <div className='flex items-center justify-between'>
                     <div>
-                        <CardTitle>{programEvent.name}</CardTitle>
+                        <CardTitle className='text-base/5'>{programEvent.name}</CardTitle>
                         <CardDescription>
                             <p>
                                 {formatTime(programEvent.startTime)}-
