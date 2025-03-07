@@ -6,5 +6,5 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function pathUrl(path: string) {
-    return `/${path}`;
-  }
+    return `/${path}`
+}

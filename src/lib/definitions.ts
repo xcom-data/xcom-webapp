@@ -3,10 +3,10 @@ export type Sponsor = {
     name: string
     isMainSponsor: boolean
     description: string
-    image: string
+    // image: string
 }
 
-export type QnA = {
+export type FAQ = {
     id: string
     question: string
     answer: string
@@ -20,17 +20,12 @@ export type BoardMember = {
     image: string
 }
 
-export type programEvent = {
+export type ProgramEvent = {
     id: string
     name: string
-    time: string
+    startTime: string
+    endTime: string
     place: string
-    description:string
-}
-
-
-export type programDay = {
-    id: string
+    description: string
     date: string
-    programevents: programEvent[]
 }

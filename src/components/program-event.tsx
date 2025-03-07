@@ -1,4 +1,5 @@
-import { programEvent } from '@/lib/definitions'
+import { ProgramEvent } from '@/lib/definitions'
+
 import {
     Card,
     CardDescription,
@@ -17,10 +18,14 @@ import {
 } from '@/components/ui/dialog'
 import { Button } from './ui/button'
 
+function formatTime(time: string) {
+    return time.slice(0, 5)
+}
+
 export default function ProgramEventObject({
     programEvent
 }: {
-    programEvent: programEvent
+    programEvent: ProgramEvent
 }) {
     return (
         <Card className='mx-4 mb-4'>
@@ -29,7 +34,11 @@ export default function ProgramEventObject({
                     <div>
                         <CardTitle>{programEvent.name}</CardTitle>
                         <CardDescription>
-                            {programEvent.time}, {programEvent.place}
+                            <p>
+                                {formatTime(programEvent.startTime)}-
+                                {formatTime(programEvent.endTime)},{' '}
+                                {programEvent.place}
+                            </p>
                         </CardDescription>
                     </div>
                     <Dialog>

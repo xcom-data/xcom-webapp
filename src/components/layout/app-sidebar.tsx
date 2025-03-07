@@ -1,8 +1,6 @@
 import {
     ArrowLeft,
     Calendar,
-    Users,
-    CircleDollarSign,
     CircleHelp
 } from 'lucide-react'
 ;<CircleHelp />
@@ -24,21 +22,21 @@ import SidebarMenuActiveButton from '../ui/sidebar-menu-active-button'
 
 // Menu items.
 const items = [
-    {
-        title: 'Sponsor',
-        url: '/admin/sponsor',
-        icon: CircleDollarSign
-    },
+    // {
+    //     title: 'Sponsor',
+    //     url: '/admin/sponsor',
+    //     icon: CircleDollarSign
+    // },
     {
         title: 'FAQ',
         url: '/admin/faq',
         icon: CircleHelp
     },
-    {
-        title: 'Om oss',
-        url: '/admin/about',
-        icon: Users
-    },
+    // {
+    //     title: 'Om oss',
+    //     url: '/admin/about',
+    //     icon: Users
+    // },
     {
         title: 'Program',
         url: '/admin/program',

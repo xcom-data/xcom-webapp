@@ -6,7 +6,7 @@ import {
     DialogTitle,
     DialogTrigger
 } from '@/components/ui/dialog'
-import FormSponsor2 from '@/components/forms/form-sponsor2'
+import FormSponsor from '@/components/forms/sponsor-form'
 import { Button } from '@/components/ui/button'
 import { useState } from 'react'
 
@@ -26,7 +26,7 @@ export default function SponsorFormDialog() {
                 <DialogHeader>
                     <DialogTitle></DialogTitle>
                 </DialogHeader>
-                <FormSponsor2 onSave={handleCloseDialog} />
+                <FormSponsor onSave={handleCloseDialog} />
             </DialogContent>
         </Dialog>
     )

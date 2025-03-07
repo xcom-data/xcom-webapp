@@ -16,7 +16,7 @@ export default function SponsorInformation({
             <Image
                 src={sponsorImage}
                 className='m-auto mb-8 w-[60%]'
-                alt='Kantega'
+                alt='sponsor'
                 height={100}
             ></Image>
 
