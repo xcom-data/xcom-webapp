@@ -28,7 +28,7 @@ const sponsors = [
 export default function Sponsor() {
     return (
         <main className='border-b'>
-            <h1 className='mb-4 text-4xl font-bold'>Sponsorer</h1>
+            <h1 className='my-4 text-4xl font-bold'>Sponsorer</h1>
             <hr className='my-4 border-t border-gray-300' />
             {sponsors.map((sponsor, index) => (
                 <SponsorInformation

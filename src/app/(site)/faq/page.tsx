@@ -27,7 +27,7 @@ export default function FAQPage() {
 
     return (
         <main>
-            <h1 className='mb-4 text-4xl font-bold'> Ofte Stilte Spørsmål </h1>
+            <h1 className='my-4 text-4xl font-bold'> Ofte Stilte Spørsmål </h1>
             <hr className='my-4 border-t border-gray-300' />
             <Accordion type='single' collapsible>
                 {faqs &&

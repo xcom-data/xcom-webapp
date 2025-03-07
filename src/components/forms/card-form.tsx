@@ -12,7 +12,6 @@ import ProgramForm from '@/components/forms/program-form'
 import { Button } from '@/components/ui/button'
 import { useState } from 'react'
 
-// ta inn tittel og hva slags form det skal være
 export default function SponsorFormDialog({
     title,
     formType
@@ -35,6 +34,7 @@ export default function SponsorFormDialog({
                 <DialogHeader>
                     <DialogTitle></DialogTitle>
                 </DialogHeader>
+
                 {formType === 'sponsor' && (
                     <SponsorForm onSave={handleCloseDialog} />
                 )}

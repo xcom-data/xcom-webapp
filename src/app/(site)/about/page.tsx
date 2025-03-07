@@ -139,7 +139,7 @@ export default function About() {
 
     return (
         <main className='border-b pb-4'>
-            <h1 className='mb-2 text-4xl font-bold'>Styret XCOM 2025</h1>
+            <h1 className='my-4 text-4xl font-bold'>Styret XCOM 2025</h1>
             <hr className='my-4 border-t border-gray-300' />
 
             <h4 className='mb-8'>
