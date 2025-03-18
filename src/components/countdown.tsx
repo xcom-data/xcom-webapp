@@ -42,7 +42,7 @@ function Timer({
     seconds: number
 }) {
     return (
-        <section className='flex flex-col items-center'>
+        <section className='flex flex-col items-center p-4'>
             <p className='max-w-3xl text-center text-lg font-bold text-black'>
                 Antall dager til ekskursjon:
             </p>
