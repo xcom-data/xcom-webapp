@@ -140,15 +140,15 @@ export default function About() {
     return (
         <main className='w-full pb-4'>
             <h1 className='my-4 text-4xl font-bold'>Styret XCOM 2025</h1>
-            <hr className='my-4 border-t border-gray-300 ' />
+            <hr className='my-4 border-t border-gray-300' />
 
-            <h4 className='mb-8  sm:text-lg'>
+            <h4 className='mb-8 sm:text-lg'>
                 {' '}
                 Velkommen til XCOM Data 2025! XCOM Data 2025 er
                 ekskursjonskomiteen for 3. klasse Datateknologi ved NTNU.
             </h4>
 
-            <div className='flex flex-wrap mx-auto justify-center '>
+            <div className='mx-auto flex flex-wrap justify-center'>
                 {boardMembers.map((member, index) => (
                     <BoardMember
                         key={index}

@@ -8,7 +8,7 @@ import {
     TableHeader,
     TableRow
 } from '@/components/ui/table'
-import CustomTableRow from '@/components/ui/custom-tablerow'
+import CustomTableRow from '@/components/custom-tablerow'
 import SponsorFormDialog from '@/components/forms/sponsor-form-dialog'
 import { LoaderCircle } from 'lucide-react'
 import { useQuery } from '@tanstack/react-query'

@@ -40,16 +40,15 @@ export default function HeaderMobile() {
                     </SheetHeader>
                     <ul className='mt-8'>
                         {links.map(link => (
-                            // eslint-disable-next-line react/jsx-key
-                            <SheetClose asChild>
-                            <li
-                                key={link.url}
-                                className='flex h-[60px] items-center border-b text-left text-xl first:border-t'
-                            >
-                                <Link href={link.url} className='w-full'>
-                                    {link.name}
-                                </Link>
-                            </li>
+                            <SheetClose asChild key={link.url}>
+                                <li
+                                    key={link.url}
+                                    className='flex h-[60px] items-center border-b text-left text-xl first:border-t'
+                                >
+                                    <Link href={link.url} className='w-full'>
+                                        {link.name}
+                                    </Link>
+                                </li>
                             </SheetClose>
                         ))}
                     </ul>

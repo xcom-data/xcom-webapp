@@ -14,17 +14,19 @@ export default function BoardMember({
     mail
 }: BoardMemberProps) {
     return (
-        <div className='w-1/2 md:w-1/3 sm:px-4 pb-4 text-center'>
-            <Image 
+        <div className='w-1/2 pb-4 text-center sm:px-4 md:w-1/3'>
+            <Image
                 src={url}
                 alt={`${name}'s profile`}
                 width={200}
                 height={100}
-                className='rounded-full mx-auto w-1/2 md:w-48'
+                className='mx-auto w-1/2 rounded-full md:w-48'
             />
-            <h2 className='sm:text-xl text-sm font-semibold'>{name}</h2>
-            <p className='sm:text-xl text-sm text-gray-600'>{role}</p>
-            <p className='sm:text-xl text-sm text-gray-600 break-words'>{mail}</p>
+            <h2 className='text-sm font-semibold sm:text-xl'>{name}</h2>
+            <p className='text-sm text-gray-600 sm:text-xl'>{role}</p>
+            <p className='break-words text-sm text-gray-600 sm:text-xl'>
+                {mail}
+            </p>
         </div>
     )
 }

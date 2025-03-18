@@ -31,51 +31,63 @@ export default function ProgramPage() {
 
     return (
         <main>
-            <h1 className='mb-4 text-4xl font-bold'>Program</h1>
+            <h1 className='my-4 text-4xl font-bold'>Program</h1>
+            <hr className='my-4 border-t border-gray-300' />
             <h4 className='mb-8'>
                 Under finner du programmet for ekskursjonen 2025, merk at det
                 kan forekomme endringer underveis.
             </h4>
             <div>
-                {findProgramDates().map((date: string) => {
-                    const dateObj = new Date(date)
+                {findProgramDates().length == 0 ? (
+                    <p className='py-8 text-center text-4xl'>
+                        {' '}
+                        Program kommer{' '}
+                    </p>
+                ) : (
+                    findProgramDates().map((date: string) => {
+                        const dateObj = new Date(date)
 
-                    let weekday = dateObj.toLocaleDateString('nb-NO', {
-                        weekday: 'long'
-                    })
-                    const formattedDate = dateObj.toLocaleDateString('nb-NO', {
-                        day: '2-digit',
-                        month: '2-digit'
-                    })
-                    weekday = weekday.charAt(0).toUpperCase() + weekday.slice(1)
-                    const cleanedDate = formattedDate.replace(/\.$/, '')
+                        let weekday = dateObj.toLocaleDateString('nb-NO', {
+                            weekday: 'long'
+                        })
+                        const formattedDate = dateObj.toLocaleDateString(
+                            'nb-NO',
+                            {
+                                day: '2-digit',
+                                month: '2-digit'
+                            }
+                        )
+                        weekday =
+                            weekday.charAt(0).toUpperCase() + weekday.slice(1)
+                        const cleanedDate = formattedDate.replace(/\.$/, '')
 
-                    return (
-                        <div key={date} className='mb-6'>
-                            <h4 className='mb-4 font-bold'>{`${weekday} ${cleanedDate}`}</h4>
-                            {programEvents
-                                ?.filter(
-                                    (programEvent: ProgramEvent) =>
-                                        programEvent.date === date
-                                )
-                                .sort(
-                                    (
-                                        program1: ProgramEvent,
-                                        program2: ProgramEvent
-                                    ) =>
-                                        program1.startTime.localeCompare(
-                                            program2.startTime
-                                        )
-                                )
-                                .map((event: ProgramEvent) => (
-                                    <ProgramEventObject
-                                        key={event.id}
-                                        programEvent={event}
-                                    />
-                                ))}
-                        </div>
-                    )
-                })}
+                        return (
+                            <div key={date} className='mb-6'>
+                                <h4 className='mb-4 font-bold'>{`${weekday} ${cleanedDate}`}</h4>
+                                {programEvents
+                                    ?.filter(
+                                        (programEvent: ProgramEvent) =>
+                                            programEvent.date === date
+                                    )
+                                    .sort(
+                                        (
+                                            program1: ProgramEvent,
+                                            program2: ProgramEvent
+                                        ) =>
+                                            program1.startTime.localeCompare(
+                                                program2.startTime
+                                            )
+                                    )
+                                    .map((event: ProgramEvent) => (
+                                        <ProgramEventObject
+                                            key={event.id}
+                                            programEvent={event}
+                                        />
+                                    ))}
+                            </div>
+                        )
+                    })
+                )}
             </div>
         </main>
     )
