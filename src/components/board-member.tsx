@@ -14,7 +14,7 @@ export default function BoardMember({
     mail
 }: BoardMemberProps) {
     return (
-        <div className='w-1/2 pb-4 text-center sm:px-4 md:w-1/3'>
+        <div className='w-1/2 pb-4 text-center sm:px-4 md:w-1/3 lg:w-1/4'>
             <Image
                 src={url}
                 alt={`${name}'s profile`}

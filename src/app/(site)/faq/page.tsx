@@ -4,7 +4,6 @@ import FAQList from '@/components/faq-list'
 import { supabase } from '@/lib/initSupabase'
 import { useQuery } from '@tanstack/react-query'
 
-
 const fetchFAQs = async () => {
     const { data } = await supabase
         .from('FAQ')
