@@ -19,7 +19,7 @@ const links = [
 
 export default function HeaderMobile() {
     return (
-        <div className='lg:hidden' >
+        <div className='lg:hidden'>
             <Sheet>
                 <SheetTrigger asChild>
                     <div className='mr-4 rounded-md p-2 opacity-70'>

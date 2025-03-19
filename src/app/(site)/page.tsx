@@ -6,8 +6,8 @@ const EKSKURSJON_DATO = new Date('2025-04-05T22:00:00')
 
 export default function Home() {
     return (
-        <main className='flex flex-col items-center max-w-[80%] mx-auto'>
-            <div className='mt-16 justify-center pb-8 flex'>
+        <main className='mx-auto flex max-w-[80%] flex-col items-center'>
+            <div className='mt-16 flex justify-center pb-8'>
                 <Image src={img} alt='logo' className='-z-10'></Image>
             </div>
 

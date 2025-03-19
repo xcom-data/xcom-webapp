@@ -7,7 +7,7 @@ import HeaderDesktop from './headerDesktop'
 
 export default function NavBar() {
     return (
-        <header className='container mx-auto md:mt-4 flex w-full justify-between items-center'>
+        <header className='container mx-auto flex w-full items-center justify-between md:mt-4'>
             <Link href='/' className='w-1/3 pl-4 text-center'>
                 <Image src={img} alt='logo' width={250} height={150} />
             </Link>
