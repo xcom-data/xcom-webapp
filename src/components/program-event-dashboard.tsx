@@ -14,20 +14,11 @@ import {
     DialogTitle,
     DialogFooter
 } from '@/components/ui/dialog'
-import { Button } from './ui/button'
-import { Pencil, Trash2 } from 'lucide-react'
-import { deleteEvent } from '@/actions/deleteEvent'
-import { toast } from 'sonner'
+import ProgramEditForm from './forms/program-edit-dialog'
+import ProgramDeleteButton from './ui/program-delete-button'
 
 function formatTime(time: string) {
     return time.slice(0, 5)
-}
-
-const handleDelete = async (id: string) => {
-    const result = await deleteEvent(id)
-    if (result.error) {
-        toast('Noe gikk galt')
-    } else toast('Aktivitet slettet')
 }
 
 export default function ProgramEventDashBoard({
@@ -51,21 +42,8 @@ export default function ProgramEventDashBoard({
                     </div>
                     <Dialog>
                         <div className='flex w-full justify-end gap-2'>
-                            <Button
-                                size='icon'
-                                className='bg-green-600 hover:bg-green-800'
-                            >
-                                <Pencil />
-                            </Button>
-                            <Button
-                                size='icon'
-                                variant='destructive'
-                                onClick={async () =>
-                                    await handleDelete(programEvent.id)
-                                }
-                            >
-                                <Trash2 />
-                            </Button>
+                            <ProgramEditForm programEvent={programEvent} />
+                            <ProgramDeleteButton id={programEvent.id} />
                         </div>
                         <DialogContent className='sm:max-w-md'>
                             <DialogHeader>

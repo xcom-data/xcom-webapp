@@ -1,8 +1,4 @@
-import {
-    ArrowLeft,
-    Calendar,
-    CircleHelp
-} from 'lucide-react'
+import { ArrowLeft, Calendar, CircleHelp } from 'lucide-react'
 ;<CircleHelp />
 import {
     Sidebar,
@@ -18,7 +14,7 @@ import {
 } from '@/components/ui/sidebar'
 import Link from 'next/link'
 import { ThemeToggle } from './theme-toggle'
-import SidebarMenuActiveButton from '../ui/sidebar-menu-active-button'
+import SidebarMenuActiveButton from './sidebar-menu-active-button'
 
 // Menu items.
 const items = [

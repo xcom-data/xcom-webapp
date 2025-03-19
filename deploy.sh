@@ -12,10 +12,7 @@ else
 fi
 
 # Bygg Docker-image
-docker build . -t xcom
-
-# Tag image
-docker tag xcom xcomdata/webapp
+docker build . -t xcomdata/webapp
 
 # Logg inn til Docker Hub
 echo "$DOCKER_PASSWORD" | docker login -u xcomdata --password-stdin

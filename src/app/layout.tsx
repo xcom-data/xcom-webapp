@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang='en' suppressHydrationWarning className='light'>
-            <body className={`${outfit.className} min-h-screen bg-zinc-100`}>
+            <body className={`${outfit.className} min-h-full bg-zinc-100`}>
                 <Providers>{children}</Providers>
             </body>
         </html>

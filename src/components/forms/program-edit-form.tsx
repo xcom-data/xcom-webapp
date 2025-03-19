@@ -24,7 +24,8 @@ import { Textarea } from '@/components/ui/textarea'
 import { Calendar } from '@/components/ui/calendar'
 import { Calendar as CalendarIcon } from 'lucide-react'
 import { TimePicker } from '../ui/time-picker'
-import { createEvent } from '@/actions/createEvent'
+import { editEvent } from '@/actions/editEvent'
+import { ProgramEvent } from '@/lib/definitions'
 
 const formSchema = z
     .object({
@@ -56,16 +57,22 @@ const formSchema = z
         }
     )
 
-export default function ProgramForm({ onSave }: { onSave: () => void }) {
+export default function ProgramEditForm({
+    onSave,
+    programEvent
+}: {
+    onSave: () => void
+    programEvent: ProgramEvent
+}) {
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            eventName: '',
-            place: '',
-            description: '',
-            date: format(new Date(), 'yyyy-MM-dd'),
-            startTime: '00:00',
-            endTime: '00:00'
+            eventName: programEvent.name,
+            place: programEvent.place,
+            description: programEvent.description,
+            date: programEvent.date,
+            startTime: programEvent.startTime,
+            endTime: programEvent.endTime
         }
     })
 
@@ -79,8 +86,8 @@ export default function ProgramForm({ onSave }: { onSave: () => void }) {
             formData.append('startTime', values.startTime)
             formData.append('endTime', values.endTime)
             formData.append('date', values.date.toString())
-            createEvent(formData)
-            toast('Ny Aktivitet lagt til')
+            editEvent(programEvent.id, formData)
+            toast('Aktivitet redigert')
         } catch (error) {
             console.error('Form submission error', error)
             toast.error('Failed to submit the form. Please try again.')
@@ -90,7 +97,7 @@ export default function ProgramForm({ onSave }: { onSave: () => void }) {
     return (
         <section>
             <div className='mx-auto max-w-3xl py-10'>
-                <h1 className='my-auto text-4xl'> Legg til Program </h1>
+                <h1 className='my-auto text-4xl'> Rediger Program </h1>
                 <Form {...form}>
                     <form
                         onSubmit={form.handleSubmit(onSubmit)}
