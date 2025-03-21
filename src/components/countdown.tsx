@@ -46,7 +46,7 @@ function Timer({
             <p className='max-w-3xl text-center text-lg font-bold text-black'>
                 Antall dager til ekskursjon:
             </p>
-            <div className='mx-auto flex w-3/5 flex-row justify-evenly py-1'>
+            <div className='mx-auto flex flex-row justify-evenly py-1'>
                 <DateTimeDisplay
                     value={days}
                     type={'Dager'}
