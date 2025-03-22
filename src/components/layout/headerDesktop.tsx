@@ -5,8 +5,8 @@ import { usePathname } from 'next/navigation'
 
 const navLinks = [
     { label: 'PROGRAM', href: '/program' },
-    { label: 'SPONSOR', href: '/sponsor' },
     { label: 'FAQ', href: '/faq' },
+    { label: 'SPONSOR', href: '/sponsor' },
     { label: 'OM OSS', href: '/about' }
 ]
 
