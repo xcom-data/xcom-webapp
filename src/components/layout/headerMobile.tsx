@@ -18,9 +18,8 @@ const links = [
     { name: 'About', url: '/about' }
 ]
 
-
 export default function HeaderMobile() {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false)
 
     return (
         <div className='lg:hidden'>
@@ -44,12 +43,16 @@ export default function HeaderMobile() {
                     </SheetHeader>
                     <ul className='mt-8'>
                         {links.map(link => (
-                            <SheetClose asChild key={link.url} >
+                            <SheetClose asChild key={link.url}>
                                 <li
                                     key={link.url}
                                     className='flex h-[60px] items-center border-b text-left text-xl first:border-t'
                                 >
-                                    <Link href={link.url} className='w-full' onClick={()=>setIsOpen(false)}>
+                                    <Link
+                                        href={link.url}
+                                        className='w-full'
+                                        onClick={() => setIsOpen(false)}
+                                    >
                                         {link.name}
                                     </Link>
                                 </li>
